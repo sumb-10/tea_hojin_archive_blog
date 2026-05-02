@@ -1,0 +1,13 @@
+---
+import { getCollection } from "astro:content";
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("tea-log");
+  return posts.map((post: (typeof posts)[number]) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+---
+
+<ArticleLayout post={post} />

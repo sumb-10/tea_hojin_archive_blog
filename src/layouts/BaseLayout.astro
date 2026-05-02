@@ -1,0 +1,37 @@
+---
+import Sidebar from "../components/Sidebar.astro";
+import MobileNav from "../components/MobileNav.astro";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Tea_hojin Archive",
+  description = "A warm minimal personal tea archive for tea logs, teaware, and notes.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="site-shell">
+      <Sidebar />
+      <MobileNav />
+      <main class="main-content">
+        <slot />
+        <footer class="site-footer">
+          <p>© 2026 Tea_hojin Archive. All rights reserved.</p>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>

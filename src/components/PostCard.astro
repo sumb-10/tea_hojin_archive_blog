@@ -1,0 +1,27 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+type CollectionName = "tea-log" | "teaware" | "notes";
+
+interface Props {
+  post: CollectionEntry<CollectionName>;
+  href: string;
+}
+
+const { post, href } = Astro.props;
+const date = post.data.date.toISOString().slice(0, 10).replaceAll("-", "/");
+---
+
+<a class="post-card" href={href}>
+  <div class="post-card-image">
+    <img src={post.data.image} alt={post.data.title} loading="lazy" />
+  </div>
+  <div class="post-card-body">
+    <h3>{post.data.title}</h3>
+    <p>{post.data.note}</p>
+    <div class="post-card-meta">
+      <span>{post.data.category}</span>
+      <span>{date}</span>
+    </div>
+  </div>
+</a>

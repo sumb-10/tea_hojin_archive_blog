@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PostCard from "../components/PostCard.astro";
+
+const collections = await Promise.all([
+  getCollection("tea-log"),
+  getCollection("teaware"),
+  getCollection("notes"),
+]);
+
+const posts = collections
+  .flat()
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 9);
+---
+
+<BaseLayout>
+  <header class="page-kicker">
+    <p>
+      Tea_hojin의 작은 차 기록 보관소<br />
+      생각과 감각을 기록하고 있습니다
+    </p>
+  </header>
+
+  <section>
+    <div class="section-header">
+      <h1 class="section-title">Recent Notes</h1>
+      <span class="section-meta">Tea · Teaware · Notes</span>
+    </div>
+    <div class="card-grid">
+      {posts.map((post) => <PostCard post={post} href={`/${post.collection}/${post.slug}/`} />)}
+    </div>
+  </section>
+</BaseLayout>

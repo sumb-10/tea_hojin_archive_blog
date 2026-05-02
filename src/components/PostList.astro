@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+type CollectionName = "tea-log" | "teaware" | "notes";
+
+interface Props {
+  posts: CollectionEntry<CollectionName>[];
+  basePath: string;
+}
+
+const { posts, basePath } = Astro.props;
+---
+
+<ul class="post-list">
+  {posts.map((post, index) => {
+    const date = post.data.date.toISOString().slice(0, 10).replaceAll("-", "/");
+    const number = String(posts.length - index).padStart(2, "0");
+
+    return (
+      <li>
+        <a class="post-row" href={`${basePath}/${post.slug}/`}>
+          <span class="row-number">NO.{number}</span>
+          <span class="row-thumb">
+            <img src={post.data.image} alt={post.data.title} loading="lazy" />
+          </span>
+          <span class="row-copy">
+            <h3>{post.data.title}</h3>
+            <p>{post.data.note}</p>
+          </span>
+          <span class="row-category">{post.data.category}</span>
+          <span class="row-date">{date}</span>
+        </a>
+      </li>
+    );
+  })}
+</ul>

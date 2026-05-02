@@ -1,0 +1,16 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostList from "../../components/PostList.astro";
+
+const posts = await getCollection("tea-log");
+posts.sort((a: CollectionEntry<"tea-log">, b: CollectionEntry<"tea-log">) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout title="Tea Log | Tea_hojin Archive">
+  <header class="section-header">
+    <h1 class="section-title">Tea Log</h1>
+    <span class="section-meta">{posts.length} entries</span>
+  </header>
+  <PostList posts={posts} basePath="/tea-log" />
+</BaseLayout>

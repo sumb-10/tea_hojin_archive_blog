@@ -1,0 +1,71 @@
+---
+const nav = [
+  { href: "/", label: "Home" },
+  { href: "/about/", label: "About Me" },
+  { href: "/tea-log/", label: "Tea Log" },
+  { href: "/teaware/", label: "Teawares" },
+  { href: "/notes/", label: "Notes" },
+];
+---
+
+<header class="mobile-header">
+  <button class="mobile-menu-button" type="button" aria-label="Open menu" data-open-menu>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+    </svg>
+  </button>
+  <a class="mobile-brand" href="/">Tea_hojin</a>
+  <span aria-hidden="true" style="width:36px;height:36px"></span>
+</header>
+
+<div class="mobile-drawer" hidden data-mobile-drawer>
+  <button class="drawer-backdrop" type="button" aria-label="Close menu" data-close-menu></button>
+  <aside class="drawer-panel" aria-label="Mobile navigation">
+    <button class="drawer-close" type="button" aria-label="Close menu" data-close-menu>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+      </svg>
+    </button>
+    <div class="sidebar-like">
+      <div class="sidebar-brand">
+        <a href="/">
+          <p class="sidebar-brand-title">Tea_hojin<br />Archive</p>
+        </a>
+      </div>
+      <p class="sidebar-note">
+        A personal magazine of tea,<br />
+        teaware, quiet taste,<br />
+        and collected notes.
+      </p>
+      <nav class="sidebar-nav">
+        {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+      </nav>
+      <a class="sidebar-social" href="https://www.instagram.com/tea_hojin" rel="noreferrer">
+        <span class="social-mark" aria-hidden="true">◎</span>
+        <span>@tea_hojin</span>
+      </a>
+    </div>
+  </aside>
+</div>
+
+<script>
+  const drawer = document.querySelector("[data-mobile-drawer]");
+  const open = document.querySelector("[data-open-menu]");
+  const closeButtons = document.querySelectorAll("[data-close-menu]");
+
+  function openMenu() {
+    drawer?.removeAttribute("hidden");
+    document.body.classList.add("mobile-menu-open");
+  }
+
+  function closeMenu() {
+    drawer?.setAttribute("hidden", "");
+    document.body.classList.remove("mobile-menu-open");
+  }
+
+  open?.addEventListener("click", openMenu);
+  closeButtons.forEach((button) => button.addEventListener("click", closeMenu));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenu();
+  });
+</script>
