@@ -32,6 +32,36 @@
         "image": {
           "type": "string"
         },
+        "tastingNote": {
+          "type": "string"
+        },
+        "tasting": {
+          "type": "object",
+          "properties": {
+            "space": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 10,
+              "multipleOf": 0.5
+            },
+            "density": {
+              "$ref": "#/definitions/tea-log/properties/tasting/properties/space"
+            },
+            "softness": {
+              "$ref": "#/definitions/tea-log/properties/tasting/properties/space"
+            },
+            "clarity": {
+              "$ref": "#/definitions/tea-log/properties/tasting/properties/space"
+            }
+          },
+          "required": [
+            "space",
+            "density",
+            "softness",
+            "clarity"
+          ],
+          "additionalProperties": false
+        },
         "$schema": {
           "type": "string"
         }

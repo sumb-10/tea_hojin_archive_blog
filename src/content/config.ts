@@ -8,8 +8,22 @@ const postSchema = z.object({
   image: z.string(),
 });
 
+const score = z.number().min(0).max(10).multipleOf(0.5);
+
+const teaLogSchema = postSchema.extend({
+  tastingNote: z.string().optional(),
+  tasting: z
+    .object({
+      space: score,
+      density: score,
+      softness: score,
+      clarity: score,
+    })
+    .optional(),
+});
+
 export const collections = {
-  "tea-log": defineCollection({ type: "content", schema: postSchema }),
+  "tea-log": defineCollection({ type: "content", schema: teaLogSchema }),
   teaware: defineCollection({ type: "content", schema: postSchema }),
   notes: defineCollection({ type: "content", schema: postSchema }),
 };

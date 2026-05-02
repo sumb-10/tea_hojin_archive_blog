@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
+import TeaLog from "./TeaLog.astro";
 
 type CollectionName = "tea-log" | "teaware" | "notes";
 
@@ -13,22 +14,26 @@ const { Content } = await post.render();
 const date = post.data.date.toISOString().slice(0, 10).replaceAll("-", "/");
 ---
 
-<BaseLayout title={`${post.data.title} | Tea_hojin Archive`} description={post.data.note}>
-  <article>
-    <header class="article-shell">
-      <div class="article-meta">
-        <a href={`/${post.collection}/`}>{post.data.category}</a>
-        <span>·</span>
-        <time datetime={post.data.date.toISOString()}>{date}</time>
+{post.collection === "tea-log" ? (
+  <TeaLog post={post} />
+) : (
+  <BaseLayout title={`${post.data.title} | Tea_hojin Archive`} description={post.data.note}>
+    <article>
+      <header class="article-shell">
+        <div class="article-meta">
+          <a href={`/${post.collection}/`}>{post.data.category}</a>
+          <span>·</span>
+          <time datetime={post.data.date.toISOString()}>{date}</time>
+        </div>
+        <h1 class="article-title">{post.data.title}</h1>
+        <p class="article-note">{post.data.note}</p>
+        <div class="article-hero">
+          <img src={post.data.image} alt={post.data.title} />
+        </div>
+      </header>
+      <div class="article-body">
+        <Content />
       </div>
-      <h1 class="article-title">{post.data.title}</h1>
-      <p class="article-note">{post.data.note}</p>
-      <div class="article-hero">
-        <img src={post.data.image} alt={post.data.title} />
-      </div>
-    </header>
-    <div class="article-body">
-      <Content />
-    </div>
-  </article>
-</BaseLayout>
+    </article>
+  </BaseLayout>
+)}

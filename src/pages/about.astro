@@ -3,15 +3,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const sections = [
   ["Tea Log", "/tea-log/", "마신 차에 대한 기록. 종류와 우림, 그날의 맛과 향, 그리고 떠오른 감정들."],
-  ["Teawares", "/teaware/", "소장하고 있는 다기의 이야기. 찻잔, 다관, 차탁 등 도구의 아름다움과 쓰임새."],
-  ["Notes", "/notes/", "차 문화, 계절의 변화, 일상의 단상을 자유롭게 남기는 공간."],
+  ["Teawares", "/teaware/", "소장하고 있는 다기의 이야기. 자사호 등 도구의 아름다움과 쓰임새."],
+  ["Notes", "/notes/", "차 산지 정보, 차 과학, 차와 관련된 여러 정보를 정리한 공간."],
 ];
 ---
 
 <BaseLayout title="About Me | Tea_hojin Archive">
   <header class="section-header">
     <h1 class="section-title">About Me &amp; Blog</h1>
-    <span class="section-meta">since 2024</span>
+    <span class="section-meta">blog since 2026</span>
   </header>
 
   <section class="about-grid">
@@ -21,21 +21,23 @@ const sections = [
       </div>
       <div class="about-place">
         Seoul, KR<br />
-        Tea · Teaware · Notes
       </div>
     </div>
 
     <article class="about-copy">
       <p class="about-lead">
-        안녕하세요. 차와 다기, 그리고 고요한 시간을 기록하는 <strong>Tea_hojin</strong>입니다.
+        안녕하세요. 차와 이야기를 기록하는 <strong>Tea_hojin</strong>입니다.
       </p>
       <p>
-        이 공간은 저의 작은 차 생활을 정리하고 나누는 개인 아카이브입니다. 일상 속에서 마주하는 차의
-        순간들, 손끝에서 느껴지는 다기의 감촉, 그리고 그 시간 속에서 떠오르는 단상들을 기록하고 있습니다.
+        이 공간은 저의 작은 차 생활을 정리하고 나누는 개인 아카이브입니다.
+        <br>평소 제가 즐기는 차들과, 다기들, 공유하고픈 정보들을 기록하고 있습니다.
+        <br>편하게 둘러보다 가셔요.
+        <br>혹 인용하실때는 출처표기 부탁드립니다.
+        <br><br>문의나 티챗(teachat?)은 
+        <br>Instagram : <a class="link" href="https://www.instagram.com/tea_hojin" rel="noreferrer">@tea_hojin</a>, DM 주세요.
       </p>
-      <blockquote>平心書記 — 평온한 마음으로 기록한다.</blockquote>
       <h3>이 공간에 대하여</h3>
-      <p>Tea_hojin Archive는 세 가지 주제를 중심으로 운영됩니다.</p>
+      <p>Tea_hojin Archive는 세 가지 주제를 중심으로 천천히 작성하고 있습니다.</p>
 
       <dl class="about-links">
         {sections.map(([title, href, text]) => (
