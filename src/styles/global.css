@@ -151,6 +151,12 @@ button {
   border-radius: 999px;
 }
 
+.social-mark img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
 .mobile-header,
 .mobile-drawer {
   display: none;
@@ -846,8 +852,11 @@ button {
     position: relative;
     display: flex;
     width: min(86vw, 360px);
-    height: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
     flex-direction: column;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     background: #2d2d2a;
   }
 
@@ -867,8 +876,13 @@ button {
 
   .drawer-panel .sidebar-like {
     display: flex;
-    height: 100%;
+    min-height: 100%;
     flex-direction: column;
+    padding-bottom: max(18px, env(safe-area-inset-bottom));
+  }
+
+  .drawer-panel .sidebar-social {
+    flex-shrink: 0;
   }
 
   .page-kicker {
