@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
+import GoogleMap from "../components/GoogleMap.astro";
 
 interface Props {
   post: CollectionEntry<"tea-log">;
@@ -21,7 +22,7 @@ const items = tasting
   : [];
 
 const center = 100;
-const radius = 68;
+const radius = 90;
 
 function point(value: number, angle: number) {
   const radian = (angle * Math.PI) / 180;
@@ -33,6 +34,8 @@ const grid = [2.5, 5, 7.5, 10].map((value) =>
   [-90, 0, 90, 180].map((angle) => point(value, angle)).join(" ")
 );
 const chartPoints = items.map((item) => point(item.value, item.angle)).join(" ");
+const axisMin = center - radius;
+const axisMax = center + radius;
 ---
 
 <BaseLayout title={`${post.data.title} | Tea_hojin Archive`} description={post.data.note}>
@@ -62,12 +65,12 @@ const chartPoints = items.map((item) => point(item.value, item.angle)).join(" ")
           <svg viewBox="0 0 200 200" role="img">
             <title>Tea log tasting radar chart</title>
             {grid.map((points) => <polygon class="radar-grid" points={points} />)}
-            <line class="radar-axis" x1="100" y1="32" x2="100" y2="168"></line>
-            <line class="radar-axis" x1="32" y1="100" x2="168" y2="100"></line>
+            <line class="radar-axis" x1={center} y1={axisMin} x2={center} y2={axisMax}></line>
+            <line class="radar-axis" x1={axisMin} y1={center} x2={axisMax} y2={center}></line>
             <polygon class="radar-area" points={chartPoints}></polygon>
             {items.map((item) => {
               const [x, y] = point(item.value, item.angle).split(",");
-              return <circle class="radar-dot" cx={x} cy={y} r="3.8"></circle>;
+              return <circle class="radar-dot" cx={x} cy={y} r="4.2"></circle>;
             })}
           </svg>
           <span class="radar-label radar-label-top">공간감</span>
@@ -75,29 +78,12 @@ const chartPoints = items.map((item) => point(item.value, item.angle)).join(" ")
           <span class="radar-label radar-label-bottom">부드러움</span>
           <span class="radar-label radar-label-left">맑음</span>
         </div>
-
-        <table class="tasting-table">
-          <caption>Tea Log flavor scores</caption>
-          <thead>
-            <tr>
-              <th scope="col">항목</th>
-              <th scope="col">점수</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((item) => (
-              <tr>
-                <th scope="row">{item.label}</th>
-                <td>{item.value.toFixed(1)} / 10</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
       </section>
     )}
 
     <div class="article-body tea-log-body">
       <Content />
     </div>
+    <GoogleMap map={post.data.map} />
   </article>
 </BaseLayout>

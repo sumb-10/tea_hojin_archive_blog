@@ -1,0 +1,48 @@
+---
+interface Props {
+  map?: {
+    title: string;
+    lat: number;
+    lng: number;
+    zoom?: number;
+    mapType?: "roadmap" | "satellite";
+  };
+}
+
+const { map } = Astro.props;
+const apiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_EMBED_API_KEY;
+const zoom = map?.zoom ?? 14;
+const mapType = map?.mapType ?? "satellite";
+const query = map ? `${map.lat},${map.lng}` : "";
+const mapsUrl = map
+  ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`
+  : "";
+const embedUrl =
+  map && apiKey
+    ? `https://www.google.com/maps/embed/v1/place?key=${encodeURIComponent(apiKey)}&q=${encodeURIComponent(query)}&center=${encodeURIComponent(query)}&zoom=${zoom}&maptype=${mapType}&language=ko`
+    : "";
+---
+
+{map && (
+  <section class="map-panel" aria-labelledby="map-title">
+    <div class="map-panel-header">
+      <p class="map-eyebrow">Origin Map</p>
+      <h2 id="map-title">{map.title}</h2>
+    </div>
+
+    {embedUrl ? (
+      <iframe
+        title={`${map.title} 지도`}
+        src={embedUrl}
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    ) : (
+      <div class="map-fallback">
+        <p>Google Maps Embed API key is not configured.</p>
+        <a class="link" href={mapsUrl} target="_blank" rel="noreferrer">Open in Google Maps</a>
+      </div>
+    )}
+  </section>
+)}

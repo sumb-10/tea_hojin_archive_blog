@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
 import TeaLog from "./TeaLog.astro";
+import GoogleMap from "../components/GoogleMap.astro";
 
 type CollectionName = "tea-log" | "teaware" | "notes";
 
@@ -34,6 +35,7 @@ const date = post.data.date.toISOString().slice(0, 10).replaceAll("-", "/");
       <div class="article-body">
         <Content />
       </div>
+      <GoogleMap map={post.data.map} />
     </article>
   </BaseLayout>
 )}

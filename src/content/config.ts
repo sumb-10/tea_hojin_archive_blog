@@ -6,6 +6,15 @@ const postSchema = z.object({
   date: z.coerce.date(),
   note: z.string(),
   image: z.string(),
+  map: z
+    .object({
+      title: z.string(),
+      lat: z.number(),
+      lng: z.number(),
+      zoom: z.number().min(0).max(21).optional(),
+      mapType: z.enum(["roadmap", "satellite"]).optional(),
+    })
+    .optional(),
 });
 
 const score = z.number().min(0).max(10).multipleOf(0.5);

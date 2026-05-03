@@ -1,0 +1,2 @@
+npm run image:optimize -- public/images/사진파일.jpeg
+npm run image:optimize -- public/images/사진파일.jpeg --width 1600 --quality 82

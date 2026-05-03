@@ -431,6 +431,57 @@ button {
   margin: 0;
 }
 
+.map-panel {
+  width: var(--article-wide);
+  max-width: none;
+  margin: 0 auto 80px var(--article-offset);
+  border: 1px solid #d8cfc2;
+  background: #f9f5ee;
+}
+
+.map-panel-header {
+  padding: 26px 30px 22px;
+  border-bottom: 1px solid #e5ded3;
+}
+
+.map-eyebrow {
+  margin: 0 0 10px;
+  color: #8c8a85;
+  font-size: 11px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.map-panel h2 {
+  margin: 0;
+  color: #2c2c2c;
+  font-family: "Noto Serif KR", "Noto Serif TC", MaruBuri, serif;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.map-panel iframe,
+.map-fallback {
+  display: block;
+  width: 100%;
+  min-height: 420px;
+  border: 0;
+}
+
+.map-fallback {
+  display: grid;
+  place-content: center;
+  gap: 12px;
+  padding: 32px;
+  color: #5a5854;
+  text-align: center;
+}
+
+.map-fallback p {
+  margin: 0;
+}
+
 .tea-log-shell {
   padding-bottom: 42px;
 }

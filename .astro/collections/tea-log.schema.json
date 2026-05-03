@@ -32,6 +32,38 @@
         "image": {
           "type": "string"
         },
+        "map": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "lat": {
+              "type": "number"
+            },
+            "lng": {
+              "type": "number"
+            },
+            "zoom": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 21
+            },
+            "mapType": {
+              "type": "string",
+              "enum": [
+                "roadmap",
+                "satellite"
+              ]
+            }
+          },
+          "required": [
+            "title",
+            "lat",
+            "lng"
+          ],
+          "additionalProperties": false
+        },
         "tastingNote": {
           "type": "string"
         },
