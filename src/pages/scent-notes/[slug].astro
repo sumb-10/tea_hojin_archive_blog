@@ -1,0 +1,13 @@
+---
+import { getCollection } from "astro:content";
+import ScentNote from "../../layouts/ScentNote.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("scent-notes");
+  return posts.map((post: (typeof posts)[number]) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+---
+
+<ScentNote post={post} />

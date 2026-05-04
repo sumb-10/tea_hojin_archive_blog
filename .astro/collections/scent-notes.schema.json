@@ -1,0 +1,82 @@
+{
+  "$ref": "#/definitions/scent-notes",
+  "definitions": {
+    "scent-notes": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "date": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "note": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "map": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "lat": {
+              "type": "number"
+            },
+            "lng": {
+              "type": "number"
+            },
+            "zoom": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 21
+            },
+            "mapType": {
+              "type": "string",
+              "enum": [
+                "roadmap",
+                "satellite"
+              ]
+            }
+          },
+          "required": [
+            "title",
+            "lat",
+            "lng"
+          ],
+          "additionalProperties": false
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "category",
+        "date",
+        "note",
+        "image"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

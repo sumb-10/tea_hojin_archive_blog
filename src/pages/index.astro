@@ -5,6 +5,7 @@ import PostCard from "../components/PostCard.astro";
 
 const collections = await Promise.all([
   getCollection("tea-log"),
+  getCollection("scent-notes"),
   getCollection("teaware"),
   getCollection("notes"),
 ]);
@@ -28,7 +29,7 @@ const posts = collections
   <section>
     <div class="section-header">
       <h1 class="section-title">Recent Notes</h1>
-      <span class="section-meta">Tea · Teaware · Notes</span>
+      <span class="section-meta">Tea · Scent · Teaware · Notes</span>
     </div>
     <div class="card-grid">
       {posts.map((post) => <PostCard post={post} href={`/${post.collection}/${post.slug}/`} />)}

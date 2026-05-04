@@ -172,6 +172,16 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
+"scent-notes": Record<string, {
+  id: string;
+  render(): Render[".md"];
+  slug: string;
+  body: string;
+  collection: "scent-notes";
+  data: InferEntrySchema<"scent-notes">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
 "tea-log": Record<string, {
   id: string;
   render(): Render[".md"];

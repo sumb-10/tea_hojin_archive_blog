@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from "astro:content";
+import GoogleMap from "../components/GoogleMap.astro";
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  post: CollectionEntry<"scent-notes">;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const date = post.data.date.toISOString().slice(0, 10).replaceAll("-", "/");
+---
+
+<BaseLayout title={`${post.data.title} | Tea_hojin Archive`} description={post.data.note}>
+  <article>
+    <header class="article-shell tea-log-shell">
+      <div class="article-meta">
+        <a href="/scent-notes/">SCENT NOTES</a>
+        <span>·</span>
+        <time datetime={post.data.date.toISOString()}>{date}</time>
+      </div>
+      <h1 class="article-title">{post.data.title}</h1>
+      <p class="article-note">{post.data.note}</p>
+      <div class="article-hero">
+        <img src={post.data.image} alt={post.data.title} />
+      </div>
+    </header>
+
+    <div class="article-body tea-log-body">
+      <Content />
+    </div>
+    <GoogleMap map={post.data.map} />
+  </article>
+</BaseLayout>

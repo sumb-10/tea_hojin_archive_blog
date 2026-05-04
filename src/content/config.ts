@@ -33,6 +33,7 @@ const teaLogSchema = postSchema.extend({
 
 export const collections = {
   "tea-log": defineCollection({ type: "content", schema: teaLogSchema }),
+  "scent-notes": defineCollection({ type: "content", schema: postSchema }),
   teaware: defineCollection({ type: "content", schema: postSchema }),
   notes: defineCollection({ type: "content", schema: postSchema }),
 };
