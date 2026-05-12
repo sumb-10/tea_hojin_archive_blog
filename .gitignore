@@ -6,3 +6,9 @@ tea_hojin Blog Design/
 .env.local
 tea_hojin Blog Design.zip
 README_FOR_CODEX.md
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example

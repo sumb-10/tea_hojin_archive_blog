@@ -6,13 +6,17 @@
   "scripts": {
     "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro check && ASTRO_TELEMETRY_DISABLED=1 astro build",
-    "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
-    "image:optimize": "node scripts/optimize-images.mjs"
+    "preview": "npm run build && wrangler dev",
+    "image:optimize": "node scripts/optimize-images.mjs",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/cloudflare": "12",
     "astro": "^5.0.0",
     "typescript": "^5.8.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "wrangler": "^4.90.0"
+  }
 }
